@@ -5,6 +5,7 @@ app.use(express.urlencoded({ extended: true }));
 
 const PORT=3010;
 
+//DECLARING DATABASE 
 const people=[
     {
         "name":"pooja",
@@ -20,14 +21,18 @@ const people=[
     }
 ]
 
+//ENDPOINT WHEN USER ENTERS WEBSITE (HERE LOCAL HOST)
 app.get('/',(req,res)=>{
     res.send("WELCOME TO API TESTING ");
 });
 
+//ENDPOINT FOR GET
 app.get('/api/people',(req,res)=>{
     res.send(people);
 });
 
+
+//ENDPOINT FOR USER TO POST DATA
 app.post('/api/people',(req,res)=>{
     const {name,age}=req.body;
 
@@ -45,6 +50,7 @@ app.post('/api/people',(req,res)=>{
     });
 });
 
+//GETTING DETAILS OF A SPECIFIC PERSON USING ID
 app.get('/api/people/:id',(req,res)=>{
     const id=parseInt(req.params.id);
 
@@ -55,6 +61,7 @@ app.get('/api/people/:id',(req,res)=>{
     res.json(people[id]);
 });
 
+//POSTING DETAILS OF A SPECIFIC PERSON USING ID
 app.put('/api/people/:id',(req,res)=>{  
     const id=parseInt(req.params.id);
 
@@ -74,6 +81,7 @@ app.put('/api/people/:id',(req,res)=>{
     });
 });
 
+//DELETING DETAILS OF A SPECIFIC PERSON USING ID
 app.delete('/api/people/:id',(req,res)=>{
     const id=parseInt(req.params.id);
 
@@ -86,6 +94,7 @@ app.delete('/api/people/:id',(req,res)=>{
     res.send(`Person with id ${id} deleted succesfully`);
 });
 
+//SERVER IS RUNNING
 app.listen(PORT,()=>{
     console.log("Listening on "+ PORT);
 })
